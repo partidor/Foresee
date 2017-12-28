@@ -17,7 +17,7 @@ CurrentCardName = None
 sleeved = True
 TIMER = 0
 convert = 0
-maxConvert = 15
+maxConvert = 20
 minConvert = maxConvert // 2
 mc = -5
 xc = 5
@@ -93,9 +93,10 @@ while True:
 			newCard = cu.process_card(box, image, convert)
 			break
 	#convert = ((convert + 1) % maxConvert) - minConvert
-	convert += 1
-	if convert > 8:
-		convert = -3
+	#convert = -10
+	convert -= 1
+	if convert < -9:
+		convert = 2
 
 	if type(box) != 'NoneType' and len(box) != 0:
 		cv2.drawContours(image, [box], -1, (0, 255, 0), 3)

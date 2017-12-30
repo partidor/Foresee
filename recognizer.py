@@ -92,11 +92,12 @@ while True:
 			box = approx
 			newCard = cu.process_card(box, image, convert)
 			break
-	#convert = ((convert + 1) % maxConvert) - minConvert
-	#convert = -10
-	convert -= 1
-	if convert < -9:
-		convert = 2
+	convert = ((convert + 1) % maxConvert) - minConvert
+	#convert = 0
+	#convert += .05
+	#convert -= 1
+	#if convert < 1.5:
+	#	convert = 1
 
 	if type(box) != 'NoneType' and len(box) != 0:
 		cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
@@ -111,6 +112,7 @@ while True:
 				#mvidPrev.clear()
 				CurrentCardName = None
 				print("card queue clear")
+				contour = 0
 
 	cv2.imshow("Webcam Feed w/ Contour", image)
 

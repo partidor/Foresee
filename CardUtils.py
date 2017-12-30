@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
 
+wMult = 63
+hMult = 88
+
 class Magic_card:
 	"""Structure to store information about query cards in the camera image."""
 
@@ -82,8 +85,8 @@ def flattener(image, pts, w, h, c):
 			temp_rect[3] = pts[1][0] # Bottom left
 			
 		
-	maxWidth = 249
-	maxHeight = 348
+	maxWidth = wMult * 4
+	maxHeight = hMult * 4
 
 	# Create destination array, calculate perspective transform matrix,
 	# and warp card image
@@ -91,6 +94,8 @@ def flattener(image, pts, w, h, c):
 	M = cv2.getPerspectiveTransform(temp_rect,dst)
 	warp = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 	warp = cv2.cvtColor(warp,cv2.COLOR_BGR2GRAY)
+
+	
 
 		
 
@@ -130,8 +135,8 @@ def process_card(contour, image, convert):
 
 	mCard.art = mCard.warp[40:205, 18:232]
 	# y:y+h x:x+w
-	# 348 x 249
-	mCard.sleeved = mCard.warp[13:340, 9:240]
+	# 352 x 252
+	mCard.sleeved = mCard.warp[15:336, 11:240]
 
 	return mCard 
 

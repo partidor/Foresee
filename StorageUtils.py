@@ -50,7 +50,7 @@ class Storage_struct:
 				continue
 			testHash = mtuple[0]
 			testScore = gis.normalized_distance(testHash, sig_to_check)
-			if testScore < minScore and testScore < 0.43:
+			if testScore < minScore and testScore < 0.42:
 				minScore = testScore
 				mvid = mtuple[1][0]
 				cardName = mtuple[1][1]
